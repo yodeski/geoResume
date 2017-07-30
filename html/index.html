@@ -1,0 +1,87 @@
+<div ng-controller="CtrlResume" ng-class="history.classlayout"> <!-- class="history.classlayout" -->
+    <div id='map'></div>
+    <div id='features' anchor-scroll-y-offset>
+        <section ng-repeat="section in sections" id="sect{{section.sectionid}}" 
+            ng-class="{'active': section.sectionorder==1}">
+            <span ng-bind-html="section.sectionimage"></span> 
+            <span ng-bind-html="section.sectiontext"></span>
+            <div class="place" ng-repeat="place in section.places"  
+                id="{{place.placeid}}"
+                data-lat={{place.lat}} 
+                data-lon={{place.lon}} 
+                data-zoom={{place.zoom}}
+                data-bearing={{place.bearing}}
+                data-pitch={{place.pitch}}>
+                <span ng-bind-html="place.placetext"></span>
+            </div>    
+        </section>
+        <a id="btnUp" href="#" ng-click="doUp(currSectionid)" ><span></span><span></span><span></span></a>
+        <a id="btnDown" href="#" ng-click="doDown(currSectionid) "><span></span><span></span><span></span></a>
+    </div>
+</div>
+
+<script>
+    /*
+    mapboxgl.accessToken = 'pk.eyJ1IjoieW9kZXNraSIsImEiOiJVeGpmVnZrIn0.oPAN3y9xhCQ6_XOvt7nkIQ';
+    var currentChapters = $('#features section div[id=0].place');
+    var lat = parseFloat(currentChapters.attr('data-lat'));
+    var lon = parseFloat(currentChapters.attr('data-lon'));
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/basic-v9',
+        center: [lat, lon],
+        zoom: 3
+    });
+
+
+    map.on('load', function () {
+        map.flyTo({
+            center: [lat, lon],
+            zoom: 14,
+            bearing: -30,
+            pitch: 90
+        });
+        var marker = new mapboxgl.Marker()
+            .setLngLat([lat, lon])
+            .addTo(map)
+    });
+
+    // On every scroll event, check which element is on screen
+    window.onscroll = function () {
+        var chapters = $('#features section div.place');
+        var found =false;
+        $.each(chapters, function(ch) {
+            var chapterName = $(this).attr('id');
+            if (chapterName && isElementOnScreen($(this).get(0)) && !found) {
+                setActiveChapter(chapterName);
+                found=true;
+            }
+        });
+    };
+
+    var activeChapterName = '0';
+    function setActiveChapter(chapterName) {
+        if (chapterName === activeChapterName) return;
+        var element = $('#features section .place#' + chapterName);
+        var activeElement = $('#features section .place#' + activeChapterName);
+        var _center = [];
+        var _lat = parseFloat(element.attr('data-lat'));
+        var _lon = parseFloat(element.attr('data-lon'));
+        var _zoom = parseFloat(element.attr('data-zoom'));
+        var _bearing = parseFloat(element.attr('data-bearing'));
+        var _pitch = parseFloat(element.attr('data-pitch'));
+        var _center = [_lat, _lon];
+        map.flyTo({zoom: _zoom, _center, bearing:_bearing, pitch:_pitch});
+
+        element.attr('class', 'active');
+        activeElement.attr('class', '');
+
+        activeChapterName = chapterName;
+    }
+
+    function isElementOnScreen(el) {
+        var bounds = el.getBoundingClientRect();
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+    }
+    */
+</script>

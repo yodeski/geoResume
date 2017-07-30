@@ -1,0 +1,15 @@
+{
+  "name": "georesume",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-scroll": "^1.0.2"
+  },
+  "authors": [
+    "Yodeski Rodriguez <yodeski_rodriguez@partech.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}
